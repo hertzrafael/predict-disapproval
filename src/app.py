@@ -1,15 +1,21 @@
-from extract import extract_all
+from extract import Extract
 from actions import Actions
 from src.model import Model
+from src.transform import Transform
 
 def run():
     model = Model()
-    frame = extract_all()
+    extract = Extract()
+    transform = Transform(extract)
+    transform.init()
 
-    actions = Actions(frame, model)
-    student_notes = actions.get_notes_by_student(1)
+    result = transform.result
+    print(result)
 
-    print(student_notes)
+    #actions = Actions(frame, model)
+    #student_notes = actions.calc_chance_disapprove(0, 9)
+
+    #print(student_notes)
 
 if __name__ == '__main__':
     run()
